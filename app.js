@@ -84,7 +84,7 @@ var loader = new GLTFLoader();
 
         //Camera
         const width = 4;
-        const height = width * (window.innerHeight/window.innerWidth);
+        const height = width * (812/375);
         const camera = new THREE.OrthographicCamera(
             width / -2,
             width / 2,
@@ -105,7 +105,7 @@ var loader = new GLTFLoader();
 
         //Renderer
         const renderer = new THREE.WebGLRenderer({antialias: true,alpha: true});
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(375, 812);
         var controls = new OrbitControls( camera, renderer.domElement );
         
         var id;
