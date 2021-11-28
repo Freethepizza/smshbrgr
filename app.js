@@ -1,10 +1,29 @@
 import * as THREE from './scripts/three.module.js';
 import {GLTFLoader} from './scripts/GLTFLoader.js';
-import {OrbitControls} from './scripts/OrbitControls.js'
+import {OrbitControls} from './scripts/OrbitControls.js';
+import {BurgerObject} from './burger.js';
+import {NerdObject} from './nerd.js';
+import {SkaterObject} from './skater.js';
+import {MuppieObject} from './muppie.js';
+import {RapperObject} from './rapper.js'
 
 
 const scene = new THREE.Scene();
 var loader = new GLTFLoader();
+
+
+  
+const burgerObject = new BurgerObject();
+const nerdObject = new NerdObject();
+const skaterObject = new SkaterObject();
+const muppieObject = new MuppieObject();
+const rapperObject = new RapperObject();
+scene.add(burgerObject);
+scene.add(nerdObject);
+scene.add(skaterObject);
+scene.add(muppieObject);
+scene.add(rapperObject);
+
 
 
         function loadBurger() {
@@ -48,24 +67,6 @@ var loader = new GLTFLoader();
             scene.add(mesh);
             console.log()
         }
-        //First row 
-        /*
-        const topLeft = () => {addModel(-1.5,-1.5,'topLeft');}//Left
-        const topCenter = () => {addModel(0,-1.5, 'topCenter');}//Center
-        const topRight = () => {addModel(1.5,-1.5, 'topRight')}//Right
-        */
-
-        //Second row
-        //const centerLeft = () => {addModel(-1.5,0,'centerLeft');}//Left
-        const centerCenter = () => {addModel(0,0, 'centerCenter');}//Center
-        const centerRight = () => {addModel(1.5,0, 'centerRight');}//Right
-
-        /*
-        //Third row
-        const bottomLeft = () => {addModel(-1.5,1.5, 'bottomLeft');}//Left
-        const bottomCenter = () => {addModel(0,1.5, 'bottomCenter');}//Center
-        const bottomRight  = () => {addModel(1.5,1.5, 'bottomRight');}//Right
-        */
        
         function randomOutput(){
             let row_number = Math.floor(Math.random() * (2 + 1));
@@ -112,28 +113,8 @@ var loader = new GLTFLoader();
         const animate = function () {
 				id = requestAnimationFrame( animate );
 				renderer.render( scene, camera );
-                controls.update();
-                let burger = scene.getObjectByName('burger');
-                let table = scene.getObjectByName('table');
-
-                /*if (table){
-                    table.rotation.y += 0.01;
-                    console.log(table.rotation.y)
-                }*/
-
-                if (scene.getObjectByName('burger')){
-                    burger.position.x += 0.05;
-                    if(burger.position.x >= 3){
-                        burger.position.x = -3
-                    }
-
-                }  
+                controls.update();            
 			};
-            console.log(scene.children)
 			animate();
-
             
-            
-            
-
         document.body.appendChild(renderer.domElement)
