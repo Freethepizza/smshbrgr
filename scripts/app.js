@@ -62,11 +62,7 @@ const render = () => {renderer.render(scene,camera)}
 tick();
 
 
-/*
-boundaries for iron
-right: x = 0.3,
-left: x = -0.6
-*/ 
+
 renderer.domElement.addEventListener('click', () =>{
     
     if(burger.position.x >= -0.6 && burger.position.x <= 0.3 ){
@@ -77,7 +73,9 @@ renderer.domElement.addEventListener('click', () =>{
         burger.resume()
     }else{
         console.log('no hit');
-        score-=1
+        burger.stop();
+        document.getElementById('game-over').style = 'z-index:0;display:block';
+        document.getElementById('score').innerText = score;
     }
     
 })  
