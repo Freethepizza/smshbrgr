@@ -26,7 +26,7 @@ const loadFromFile = (
             this.add(gltf.scene);
         }*/ 
 
-let t1 = gsap.timeline({repeat:-1, repeatDelay:1});
+let t1 = gsap.timeline({repeat:-1, repeatDelay:1,ease: "linear"});
 var t1Complete = false;
 const t2 = gsap.timeline();
 
@@ -51,11 +51,11 @@ export class Burger extends THREE.Group {
     }
     animate(){
         t1.add(() =>this.reset())
-        t1.to(this.position,{y:1.1,duration:1})
-        t1.to(this.position,{z:2.2,duration:1})
-        t1.to(this.position,{x:-1.4,duration:.5})
-        t1.to(this.position,{z:-0.6,duration:1})
-        t1.to(this.position,{y:0,duration:1})
+        t1.to(this.position,{y:1.1,duration:1,ease:'linear'})
+        t1.to(this.position,{z:2.2,duration:1,ease:'linear'})
+        t1.to(this.position,{x:-1.4,duration:.6,ease:'linear'})
+        t1.to(this.position,{z:-0.6,duration:1,ease:'linear'})
+        t1.to(this.position,{y:0,duration:1,ease:'linear'})
         t1.play()
     }
     stop(){
