@@ -1,7 +1,8 @@
 import * as THREE from './dependencies/three.module.js';
 import { GLTFLoader } from './dependencies/GLTFLoader.js';
+import gsap from './dependencies/gsap/index.js';
 
-var loaded = false;
+export var loaded = [];
 const manager = new THREE.LoadingManager();
 const loader = new GLTFLoader(manager);
 
@@ -20,20 +21,75 @@ const loadFromFile = (
         glb.scene.position.set(position_x,position_y,position_z);
         scene_instance.add(glb.scene);})
 } 
-
-export function loadAll(scene_instance){
-    loadFromFile('../assets/burger.glb','burger',scene_instance,.3,.3,.3,1,1.1,-.3);
-    loadFromFile('../assets/kitchen.glb','kitchen', scene_instance,3,3,3,0,0,0);
+const t1 = gsap.timeline({repeat:-1, repeatDelay:1});
+export class Burger extends THREE.Group {
+    constructor() {
+      super();
+      this.modelUrl = './assets/burger.glb';
+      this.onCreate();
+    }
+    onCreate() {
+      new GLTFLoader(manager).load(
+        this.modelUrl,
+        gltf => {
+            this.updateTransform();
+            this.add(gltf.scene);
+        }
+      );
+    }    
+    updateTransform() {
+        this.scale.set(.3, .3, .3);
+        this.position.set(1,1.1,-.3)
+    }
+    animate(){
+        t1.to(this.position,{z:2.2,duration:1})
+        t1.to(this.position,{x:-1.4,duration:.5})
+        t1.to(this.position,{z:.3,duration:1})
+        t1.play()
+    }
+    stop(){
+        t1.pause()
+    }
+    dispose() {
+    }
 }
 
-export function loadStatus(){
-    return loaded;
+export class Kitchen extends THREE.Group {
+    constructor() {
+      super();
+      this.modelUrl = './assets/kitchen.glb';
+      this.onCreate();
+    }
+    onCreate() {
+      new GLTFLoader(manager).load(
+        this.modelUrl,
+        gltf => {
+          this.updateTransform();
+          this.add(gltf.scene);
+        }
+      );
+    }    
+    updateTransform() {
+        this.scale.set(3, 3, 3);
+    }
+    animate(){
+        const t1 = gsap.timeline({repeat:-1, repeatDelay:1});
+        t1.to(this.position,{z:2.2,duration:1})
+        t1.to(this.position,{x:-1.4,duration:.5})
+        t1.to(this.position,{z:.3,duration:1})
+        t1.play()
+    }
+    dispose() {
+    }
+  }
+
+export function loadStatus(model){
+    loaded.push(model);
 }
 
 function loadProgress(queue,total){
     if(queue === total){
         console.log('loaded bitch')
-        loaded = true
     }
 }
 

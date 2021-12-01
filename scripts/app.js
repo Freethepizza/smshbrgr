@@ -2,7 +2,7 @@ import * as THREE from './dependencies/three.module.js';
 import { GLTFLoader } from './dependencies/GLTFLoader.js';
 import {OrbitControls} from './dependencies/OrbitControls.js';
 import TWEEN, { Tween } from './dependencies/tween.esm.js';
-import { loadAll, loadStatus } from './load.js';
+import { loadStatus , Burger, Kitchen, loaded } from './load.js';
 import gsap from './dependencies/gsap/index.js';
 
 //TESTS GO HERE START
@@ -10,43 +10,21 @@ var score = 0;
 
 //TESTS GO HERE END
 const scene = new THREE.Scene();
+const burger = new Burger()
+const kitchen = new Kitchen()
 
+scene.add(burger);
+scene.add(kitchen);
 //Loading
-loadAll(scene)
+//loadAll(scene)
+burger.animate()
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
-const mesh = new THREE.Mesh( geometry, material );
-mesh.position.x = 1;
-mesh.position.z = .3;
-mesh.visible = false;
-scene.add( mesh );
 
-/*
-boundaries for iron
-right: x = 0.3,
-left: x = -0.6
-*/ 
 
-const t1 = gsap.timeline({repeat:-1, repeatDelay:1});
-t1.to(mesh.position,{z:2.2,duration:1})
-t1.to(mesh.position,{x:-1.4,duration:1})
-t1.to(mesh.position,{z:.3,duration:1})
-t1.play()
-
-    
+  
 
 
 function main(){
-    if(loadStatus()){
-       /* var burger = scene.getObjectByName('burger');
-        burger.position.x = mesh.position.x;
-        burger.position.z = mesh.position.z;*/
-
-        
-    }else{
-        
-    }
 }
 
 //Light
@@ -74,10 +52,12 @@ const tick = function() {
     requestAnimationFrame(tick);
     render();
     TWEEN.update();
-    //console.log(mesh.position.x,mesh.position.z)
+    
     main()
     document.getElementById('points').innerText = score;
+    //console.log(scene)
 }
+
 const render = () => {renderer.render(scene,camera)}
 tick();
 
@@ -88,14 +68,16 @@ right: x = 0.3,
 left: x = -0.6
 */ 
 renderer.domElement.addEventListener('click', () =>{
-    console.log(mesh.position.x)
-    if(mesh.position.x >= -0.6 && mesh.position.x <= 0.3 ){
+    
+    if(burger.position.x >= -0.6 && burger.position.x <= 0.3 ){
         console.log('hit');
-        score+=1
+        score+=1;
+        burger.stop()
     }else{
         console.log('no hit');
         score-=1
     }
+    
 })  
 document.getElementById('points').innerText = score;
 document.body.appendChild(renderer.domElement)
