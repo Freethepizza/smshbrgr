@@ -4,29 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="scripts/app.js"></script>
     <title>Document</title>
-    <script type="module" src="app.js"></script>
     <style>
-        *{
-            margin:0;
-            padding: 0;
-        }
         canvas{
-            background-image: url("goiko.jpg");
+            background-image: url('ui/goiko.jpg');
             background-size: cover;
-            background-position: center center;
         }
-        .elemento{
-            background-color:rgba(0,0,0,0.7);
-            position:absolute;
-            width: 375px;
-            height:812px;
-            z-index: 0;
-            text-align: center;
+        h1{
+            position: absolute;
+            font-family: sans-serif;
+            color:#fff;
+            font-size: 18px;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-    <h1 style="font-family: sans-serif;position: absolute;color: #fff;"><span id="a"></span></h1>
+    <h1>Points:<span id="points"></span></h1>
+    
 </body>
 </html>
