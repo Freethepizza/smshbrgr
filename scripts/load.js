@@ -21,10 +21,6 @@ const loadFromFile = (
         glb.scene.position.set(position_x,position_y,position_z);
         scene_instance.add(glb.scene);})
 } 
-/*gltf => {
-            this.updateTransform();
-            this.add(gltf.scene);
-        }*/ 
 
 let t1 = gsap.timeline({repeat:-1, repeatDelay:1,ease: "linear"});
 var t1Complete = false;
@@ -53,7 +49,7 @@ export class Burger extends THREE.Group {
         t1.add(() =>this.reset())
         t1.to(this.position,{y:1.1,duration:1,ease:'linear'})
         t1.to(this.position,{z:2.2,duration:1,ease:'linear'})
-        t1.to(this.position,{x:-1.4,duration:.6,ease:'linear'})
+        t1.to(this.position,{x:-1.4,duration:.8,ease:'linear'})
         t1.to(this.position,{z:-0.6,duration:1,ease:'linear'})
         t1.to(this.position,{y:0,duration:1,ease:'linear'})
         t1.play()
