@@ -39,9 +39,9 @@ t1.play()
 
 function main(){
     if(loadStatus()){
-        var burger = scene.getObjectByName('burger');
+       /* var burger = scene.getObjectByName('burger');
         burger.position.x = mesh.position.x;
-        burger.position.z = mesh.position.z;
+        burger.position.z = mesh.position.z;*/
 
         
     }else{
