@@ -18,22 +18,30 @@
             font-size: 18px;
             margin-left: 10px;
         }
-        #game-over{
-            position: absolute;
-            margin-left:35px;  
-            top:300px;          
+        #game-over{            
             width: 300px;
             height: 150px;
             background-color: rgba(0,0,0,.7);
+            
+        }
+        .ui-board{
+            position: absolute;
+            display: none; 
+            align-items: center; 
+            justify-content: center;
+            width:375px;
+            height:812px;
             z-index:-1;
-            display: none;
         }
     </style>
 </head>
 <body>
     <h1>Points:<span id="points"></span></h1>
-    <div id="game-over"><h1>GAME OVER!!</h1><br>
-    <h1 id="score">aaa</h1>
+    
+    </div>
+    <div class="ui-board">
+        <div id="game-over"><h1>GAME OVER!!</h1><br>
+            <h1 id="score"></h1>
     </div>
 </body>
 </html>

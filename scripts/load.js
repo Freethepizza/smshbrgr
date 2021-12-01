@@ -25,12 +25,18 @@ const loadFromFile = (
             this.updateTransform();
             this.add(gltf.scene);
         }*/ 
-const t1 = gsap.timeline({repeat:-1, repeatDelay:1});
+
+let t1 = gsap.timeline({repeat:-1, repeatDelay:1});
+var t1Complete = false;
+const t2 = gsap.timeline();
+
 export class Burger extends THREE.Group {
     constructor() {
-      super();
-      this.modelUrl = './assets/burger.glb';
-      this.onCreate();
+    super();
+    
+    this.modelUrl = './assets/burger.glb';
+
+    this.onCreate();
     }
     async onCreate() {
       await loader.loadAsync(this.modelUrl)
@@ -41,9 +47,10 @@ export class Burger extends THREE.Group {
     }    
     updateTransform() {
         this.scale.set(.3, .3, .3);
-        this.position.set(1,0,-.3)
+        this.position.set(1,0,-.6)
     }
     animate(){
+        t1.add(() =>this.reset())
         t1.to(this.position,{y:1.1,duration:1})
         t1.to(this.position,{z:2.2,duration:1})
         t1.to(this.position,{x:-1.4,duration:.5})
@@ -56,6 +63,13 @@ export class Burger extends THREE.Group {
     }
     resume(){
         t1.resume()
+    }
+    smash(){
+        t2.to(this.scale,{y:.1,duration:.1})
+        t2.play()
+    }
+    reset(){
+        this.scale.y = .3;
     }
     dispose() {
     }
@@ -73,6 +87,7 @@ export class Kitchen extends THREE.Group {
         gltf => {
           this.updateTransform();
           this.add(gltf.scene);
+          console.log(this.modelUrl)
         }
       );
     }    

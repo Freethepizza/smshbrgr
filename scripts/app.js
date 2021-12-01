@@ -10,22 +10,14 @@ var score = 0;
 
 //TESTS GO HERE END
 const scene = new THREE.Scene();
+
+//Loading
 const burger = new Burger()
 const kitchen = new Kitchen()
-
 scene.add(burger);
 scene.add(kitchen);
-//Loading
-//loadAll(scene)
+
 burger.animate()
-
-
-
-  
-
-
-function main(){
-}
 
 //Light
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
@@ -41,6 +33,12 @@ const camera = new THREE.OrthographicCamera(width / -2,width / 2,height / 2,heig
 camera.position.set(.2,2,4);
 camera.lookAt(0,0,0);
 
+
+//Main game
+function main(){
+    
+}
+
 //Renderer
 const renderer = new THREE.WebGLRenderer({antialias: true,alpha: true});
 renderer.setSize(375, 812);
@@ -51,11 +49,9 @@ const tick = function() {
     //controls.update()
     requestAnimationFrame(tick);
     render();
-    TWEEN.update();
-    
-    main()
+    //TWEEN.update();
+    //main()
     document.getElementById('points').innerText = score;
-    //console.log(scene)
 }
 
 const render = () => {renderer.render(scene,camera)}
@@ -68,13 +64,13 @@ renderer.domElement.addEventListener('click', () =>{
     if(burger.position.x >= -0.6 && burger.position.x <= 0.3 ){
         console.log('hit');
         score+=1;
-        burger.scale.y = .1
-        burger.stop()
-        burger.resume()
+        burger.smash();
+        burger.stop();
+        setTimeout(()=>{burger.resume()},500)
     }else{
         console.log('no hit');
         burger.stop();
-        document.getElementById('game-over').style = 'z-index:0;display:block';
+        document.querySelector('.ui-board').style = 'z-index:0;display:flex';
         document.getElementById('score').innerText = score;
     }
     
