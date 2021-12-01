@@ -72,7 +72,9 @@ renderer.domElement.addEventListener('click', () =>{
     if(burger.position.x >= -0.6 && burger.position.x <= 0.3 ){
         console.log('hit');
         score+=1;
+        burger.scale.y = .1
         burger.stop()
+        burger.resume()
     }else{
         console.log('no hit');
         score-=1

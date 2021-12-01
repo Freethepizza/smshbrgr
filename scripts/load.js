@@ -50,6 +50,9 @@ export class Burger extends THREE.Group {
     stop(){
         t1.pause()
     }
+    resume(){
+        t1.resume()
+    }
     dispose() {
     }
 }
