@@ -7,7 +7,10 @@ const manager = new THREE.LoadingManager();
 const loader = new GLTFLoader();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 65812ae (performance improvements)
 const loadFromFile = (
     path,model_name,
     scene_instance, 
@@ -23,6 +26,7 @@ const loadFromFile = (
         glb.scene.position.set(position_x,position_y,position_z);
         scene_instance.add(glb.scene);})
 } 
+<<<<<<< HEAD
 /*gltf => {
             this.updateTransform();
             this.add(gltf.scene);
@@ -56,6 +60,17 @@ export async function loadAssets(){
     
 }
 =======
+=======
+
+let t1 = gsap.timeline({repeat:-1, repeatDelay:1,ease: "linear"});
+var t1Complete = false;
+const t2 = gsap.timeline();
+
+export class Burger extends THREE.Group {
+    constructor() {
+    super();
+    
+>>>>>>> parent of 65812ae (performance improvements)
     this.modelUrl = './assets/burger.glb';
 
     this.onCreate();
@@ -75,7 +90,11 @@ export async function loadAssets(){
         t1.add(() =>this.reset())
         t1.to(this.position,{y:1.1,duration:1,ease:'linear'})
         t1.to(this.position,{z:2.2,duration:1,ease:'linear'})
+<<<<<<< HEAD
         t1.to(this.position,{x:-1.4,duration:.6,ease:'linear'})
+=======
+        t1.to(this.position,{x:-1.4,duration:.8,ease:'linear'})
+>>>>>>> parent of 65812ae (performance improvements)
         t1.to(this.position,{z:-0.6,duration:1,ease:'linear'})
         t1.to(this.position,{y:0,duration:1,ease:'linear'})
         t1.play()
@@ -149,5 +168,9 @@ manager.onProgress = function ( url, itemsLoaded, itemsTotal ) {
 };
 manager.onError = function ( url ) {
 	console.log( 'There was an error loading ' + url );
+<<<<<<< HEAD
 };
 >>>>>>> parent of 51957a3 (xdfnwjkfhgejhfwef)
+=======
+};
+>>>>>>> parent of 65812ae (performance improvements)
