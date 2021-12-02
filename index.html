@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="scripts/app.js"></script>
+    <title>Document</title>
+    <style>
+        canvas{
+            background-image: url('ui/goiko.jpg');
+            background-size: cover;
+        }
+        h1{
+            position: absolute;
+            font-family: sans-serif;
+            color:#fff;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+        #game-over{            
+            width: 300px;
+            height: 150px;
+            background-color: rgba(0,0,0,.7);
+            
+        }
+        .ui-board{
+            position: absolute;
+            display: none; 
+            align-items: center; 
+            justify-content: center;
+            width:375px;
+            height:812px;
+            z-index:-1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Points:<span id="points"></span></h1>
+    
+    </div>
+    <div class="ui-board">
+        <div id="game-over"><h1>GAME OVER!!</h1><br>
+            <h1 id="score"></h1>
+    </div>
+    </div>
+</body>
+</html>
